@@ -1,18 +1,5 @@
-import mysql from 'mysql'
+import mongoose from "mongoose"
 
-const con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "employeems"
-})
-
-con.connect(function(err) {
-    if(err) {
-        console.log("connection error")
-    } else {
-        console.log("Connected")
-    }
-})
-
-export default con;
+mongoose.connect("mongodb://127.0.0.1:27017/createmydatabase").then(
+    console.log("MongoDB Connected...")
+)
