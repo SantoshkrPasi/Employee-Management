@@ -1,74 +1,67 @@
-import express from "express"
-import  Collection  from "./utils/userModel.js"
-import  cors  from 'cors'
-const app = express()
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+import express from "express";
+import Collection from "./utils/userModel.js";
+import cors from "cors";
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // app.use(cors())
 // ---------
 
 // Allow requests from 'http://localhost:5173'
-app.use(cors({
-  origin: 'http://localhost:5173',
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 // ---------
 
-app.get("/login",(req,res)=>{
+app.get("/login", (req, res) => {
+  res.json({ data: "this is the data" });
+});
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const check = await Collection.findOne({ email: email });
 
-    res.json({data:"this is the data"})
-})
-app.post("/login",async(req,res)=>{
-    const{email,password}=req.body;
-    try{
-        const check=await Collection.findOne({email:email})
-
-        if(check){
-            res.status(200).json({})
-        }
-        else{
-            res.status(401).json({})
-        }
-
+    if (check) {
+      res.status(200).json({});
+    } else {
+      res.status(401).json({});
     }
-    catch(e){
-        res.json("fail")
+  } catch (e) {
+    res.json("fail");
+  }
+});
+
+app.post("/signup", async (req, res) => {
+  try {
+    const { name, email, password, salary, address, category } = req.body;
+
+    const data = {
+      name : name,
+      email : email,
+      password : password,
+      salary : salary,
+      address : address,
+      category : category
+    };
+
+    const check = await Collection.findOne({ email: email });
+
+    if (check) {
+      res.json("exist");
+    } else {
+      await Collection.insertMany([data]);
+      res.json("notexist");
     }
+  } catch (e) {
+    console.log(e);
+    res.status(500).json("errot in the server");
+  }
+});
 
-})
-
-
-
-app.post("/signup",async(req,res)=>{
-
-    try {
-
-        const{email,password}=req.body;
-        
-        const data={
-            email:email,
-            password:password
-        }
-        
-        const check = await Collection.findOne({email:email})
-
-        if(check){
-            res.json("exist")
-        }
-        else{
-            await Collection.insertMany([data])
-            res.json("notexist");
-        }
-
-    }
-    catch(e){
-        console.log(e)
-        res.status(500).json("errot in the server")
-    }
-
-})
-
-app.listen(4000,()=>{
-    console.log("port connected");
-})
+app.listen(4000, () => {
+  console.log("port connected");
+});

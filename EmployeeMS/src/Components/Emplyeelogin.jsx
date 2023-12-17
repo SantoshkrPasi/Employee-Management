@@ -22,7 +22,7 @@ const Login = () => {
             })
 
             if(res.status == 200){
-                 navigate("/dashboard")
+                 navigate("/employeedash")
             }
             else {
                 alert("User have not sign up")
@@ -38,7 +38,7 @@ const Login = () => {
   return (
     <div className='d-flex justify-content-center align-items-center vh-100 loginPage'>
         <div className='p-3 rounded w-25 border loginForm'>
-            <h2>Admin Login</h2>
+            <h2>Employee Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className='mb-3'>
                     <label htmlFor="email"><strong>Email:</strong></label>
@@ -56,10 +56,6 @@ const Login = () => {
                     <label htmlFor="password">You are Agree with terms & conditions</label>
                 </div>
             </form>
-            <br />
-            <p>OR</p>
-            <br />
-            <Link to="/signup">Signup</Link>
         </div>
     </div>
   )

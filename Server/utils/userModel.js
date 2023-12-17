@@ -7,6 +7,10 @@ mongoose.connect('mongodb://127.0.0.1:27017/createmydatabase')
 
 
 const newSchema=new mongoose.Schema({
+    name:{
+        type:String,
+        required:true
+    },
     email:{
         type:String,
         required:true
@@ -14,7 +18,19 @@ const newSchema=new mongoose.Schema({
     password:{
         type:String,
         required:true
-    }
+    },
+    salary:{
+        type:String,
+        required:true
+    },
+    address:{
+        type:String,
+        required:true
+    },
+    category:{
+        type:String,
+        required:true
+    },
 })
 
 const collection = mongoose.model("kamli",newSchema)

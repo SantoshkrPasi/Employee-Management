@@ -11,6 +11,8 @@ import AddCategory from './Components/AddCategory';
 import AddEmployee from './Components/AddEmployee';
 import Signup from './Components/Signup';
 import Best from './Components/Best';
+import EmployeeLogin from './Components/Emplyeelogin'
+import EmployeeDashboard from './Components/EmployeeDashboard';
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
    <BrowserRouter> 
    <Routes>
     <Route path='/' element={<Best />}></Route>
+    <Route path='/employeelogin' element={<EmployeeLogin />}></Route>
+    <Route path='/employeedash' element={<EmployeeDashboard />}></Route>
     <Route path='/login' element={<Login />}></Route>
     <Route path='/signup' element={<Signup />}></Route>
     <Route path='/dashboard' element={<Dashboard />}>
