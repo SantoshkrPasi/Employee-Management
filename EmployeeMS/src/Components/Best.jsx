@@ -22,7 +22,7 @@ const Best = () => {
   return (
     <div style={container} className="best">
       <div style= {inline }>
-       <Link to = '/login' className="btn btn-primary">Admin</Link>
+       <Link to = '/adminlogin' className="btn btn-primary">Admin</Link>
        <Link to = '/employeelogin' className="btn btn-primary">Employee</Link>
       </div>
     </div>

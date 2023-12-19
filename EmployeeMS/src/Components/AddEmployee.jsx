@@ -42,11 +42,11 @@ function AddEmployee() {
   }
 
   return (
-    <div className="d-flex justify-content-center align-items-center ">
-      <div className="p-3 rounded w-25 border">
+    <div className="d-flex justify-content-center align-items-center addEmployee">
+      <div className="p-5 rounded w-40 border">
         <h1>AddEmployee</h1>
         <form>
-          <div className="mb-3">
+          <div className="mb-6">
             <label htmlFor="text">Name</label>
             <input type="text" name="name" autoComplete="off" placeholder="Enter Name" onChange={(e) => setName(e.target.value)} className="form-control rounded-0" />
 
@@ -72,7 +72,7 @@ function AddEmployee() {
             <label htmlFor="text">Salary</label>
             <input
               type="text"
-              name="email"
+              name="number"
               autoComplete="off"
               placeholder="Salary...."
               onChange={(e) => setSalary(e.target.value)}
@@ -82,7 +82,7 @@ function AddEmployee() {
             <label htmlFor="text">Address</label>
             <input
               type="text"
-              name="email"
+              name="address"
               autoComplete="off"
               placeholder="Address...."
               onChange={(e) => setAddress(e.target.value)}
@@ -114,14 +114,9 @@ function AddEmployee() {
           <input
             type="submit"
             onClick={submit}
-            className="btn btn-success w-75 rounded-0 mb-2 mx-4"
+            className="btn btn-success w-75 rounded-0 mb-1 mx-4 mt-5"
           />
         </form>
-      {/* <br /> */}
-      <p className="d-flex justify-content-center">OR</p>
-      {/* <br /> */}
-
-      <Link to="/login" className="d-flex justify-content-center">Login</Link>
       </div>
 
     </div>

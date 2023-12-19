@@ -35,3 +35,39 @@
     background-size: 100% 120%;
 
 }
+
+/* .addEmployee
+{
+    
+} */
+
+/* .App {
+   width: fit-content;
+} */
+ 
+table {
+  width: 100%;
+  border: 2px solid black;
+  margin-top: 50px;
+}
+ 
+th {
+    border-bottom: 2px solid black;
+    text-align: center;
+}
+ 
+td {
+    border-bottom: 2px solid black;
+    text-align: center;
+}
+
+.adminsignup
+{
+    background: url('./images/employeems.jpeg');
+    background: linear-gradient(rgba(11, 11, 11, 0.5), rgba(10, 10, 10, 0.5)), url("./images/download.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 120%;   
+    color: aliceblue;
+    height: 100vh;
+}

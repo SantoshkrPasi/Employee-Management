@@ -7,7 +7,7 @@ const Dashboard = () => {
   const anvigate = useNavigate();
   axios.defaults.withCredentials = true;
   const handleLogout = () => {
-      anvigate('/login');
+      anvigate('/');
       }
   return (
     <div className="container-fluid">
@@ -28,7 +28,7 @@ const Dashboard = () => {
             >
               <li className="w-100">
                 <Link
-                  to="/dashboard"
+                  to="/dashboard/home"
                   className="nav-link text-white px-0 align-middle"
                 >
                   <i className="fs-4 bi-speedometer2 ms-2"></i>

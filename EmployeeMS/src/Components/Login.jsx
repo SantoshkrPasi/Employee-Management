@@ -16,7 +16,7 @@ const Login = () => {
        
         e.preventDefault();
         try{
-            const res = await axios.post("http://localhost:4000/login",{
+            const res = await axios.post("http://localhost:4000/adminlogin",{
             email: values.email,
             password: values.password
             })
@@ -59,7 +59,7 @@ const Login = () => {
             <br />
             <p>OR</p>
             <br />
-            <Link to="/signup">Signup</Link>
+            <Link to="/adminsignup">Signup</Link>
         </div>
     </div>
   )

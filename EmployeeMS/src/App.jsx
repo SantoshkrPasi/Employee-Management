@@ -13,6 +13,7 @@ import Signup from './Components/Signup';
 import Best from './Components/Best';
 import EmployeeLogin from './Components/Emplyeelogin'
 import EmployeeDashboard from './Components/EmployeeDashboard';
+import EditEmployee from './Components/EditEmployee';
 
 
 function App() {
@@ -23,10 +24,11 @@ function App() {
     <Route path='/' element={<Best />}></Route>
     <Route path='/employeelogin' element={<EmployeeLogin />}></Route>
     <Route path='/employeedash' element={<EmployeeDashboard />}></Route>
-    <Route path='/login' element={<Login />}></Route>
-    <Route path='/signup' element={<Signup />}></Route>
+    <Route path='/adminlogin' element={<Login />}></Route>
+    <Route path='/adminsignup' element={<Signup />}></Route>
     <Route path='/dashboard' element={<Dashboard />}>
-        <Route path='' element={<Home />}></Route> 
+        <Route path='/dashboard/home' element={<Home />}></Route> 
+        <Route path='/dashboard/edit_employee' element={<EditEmployee />}></Route>
         <Route path='/dashboard/employee' element={<Employee />}></Route>
         <Route path='/dashboard/category' element={<Category />}></Route>
         <Route path='/dashboard/profile' element={<Profile />}></Route>
