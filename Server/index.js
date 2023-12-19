@@ -2,6 +2,8 @@ import express from "express";
 import Collection from "./utils/userModel.js";
 import Model from "./utils/adminModel.js"
 import cors from "cors";
+
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -99,9 +101,11 @@ app.post("/adminsignup", async (req, res) => {
     const check = await Model.findOne({ email: email });
 
     if (check) {
+      req.header.userId = check._id
       res.json("exist");
     } else {
-      await Model.insertMany([data]);
+      const user = await Model.insertMany([data]);
+      req.header.userId = user._id
       res.json("notexist");
     }
   } catch (e) {
@@ -139,7 +143,37 @@ app.put('/adsign/:id', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+app.get("/adsign/:id", async (req, res) => {
+  const userId = req.params.userId;
+  try {
+    const user = await Model.findById(userId);
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 // --------------------------------------------------------
+
+// ----------------------------------------------------------Profile------------
+
+app.get('/profile', (req, res) => {
+  // Check if the user is logged in
+  const user = req.session.check;
+  if (!user) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  res.json({ user });
+});
+
+// ----------------------------------------------------------
+
+
+
+
 app.get("/sign", async (req, res) => {
   await Collection.find()
   .then(users => res.json(users))
