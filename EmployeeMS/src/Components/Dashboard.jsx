@@ -5,6 +5,7 @@ import axios from "axios";
 
 const Dashboard = () => {
   const anvigate = useNavigate();
+  const auth=123;
   axios.defaults.withCredentials = true;
   const handleLogout = () => {
       anvigate('/');

@@ -22,6 +22,7 @@ const Login = () => {
             })
 
             if(res.status == 200){
+                localStorage.setItem('userauthtoken' , values.email);
                  navigate("/employeedash")
             }
             else {

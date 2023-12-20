@@ -22,7 +22,9 @@ const Login = () => {
             })
 
             if(res.status == 200){
-                 navigate("/dashboard")
+                localStorage.setItem('userauthtoken' , values.email);
+                //  setTimeout()
+                navigate("/dashboard");
             }
             else {
                 alert("User have not sign up")

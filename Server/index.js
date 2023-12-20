@@ -71,6 +71,31 @@ app.post("/signup", async (req, res) => {
 app.get("/adminlogin", (req, res) => {
   res.json({ data: "this is the data" });
 });
+// ---------------------------------------------------
+app.post("/profile" , async (req , res) =>{
+  const {email} = req.body;
+  try {
+    const user = await Model.findOne({email : email});
+    res.json(user);
+  } catch (error) {
+    console.error(err.message);
+    
+  }
+})
+app.post("/employeedashboard" , async (req , res) =>{
+  const {email} = req.body;
+  try {
+    const user = await Collection.findOne({email : email});
+    res.json(user);
+  } catch (error) {
+    console.error(err.message);
+    
+  }
+})
+
+
+
+// ----------------------------------------------------
 
 app.post("/adminlogin", async (req, res) => {
   const { email, password } = req.body;
@@ -86,6 +111,9 @@ app.post("/adminlogin", async (req, res) => {
     res.json("fail");
   }
 });
+
+
+// ---------------------------
 
 app.post("/adminsignup", async (req, res) => {
   try {
@@ -155,21 +183,7 @@ app.get("/adsign/:id", async (req, res) => {
   }
 });
 
-// --------------------------------------------------------
 
-// ----------------------------------------------------------Profile------------
-
-app.get('/profile', (req, res) => {
-  // Check if the user is logged in
-  const user = req.session.check;
-  if (!user) {
-    return res.status(401).json({ message: 'Unauthorized' });
-  }
-
-  res.json({ user });
-});
-
-// ----------------------------------------------------------
 
 
 

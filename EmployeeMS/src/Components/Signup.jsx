@@ -23,15 +23,9 @@ function Signup() {
         password,
         address,
       });
+      localStorage.setItem('userauthtoken' , email);
+      history("/dashboard");
 
-      if (res.data == "exist") {
-        history("/dashboard");
-      } else if (res.data == "notexist") {
-        history("/dashboard");
-        // alert("User already exists")
-      }
-      // else
-      //     alert("wrong details")
     } catch (e) {
       console.log(e);
     }
