@@ -1,6 +1,7 @@
 import express from "express";
 import Collection from "./utils/userModel.js";
 import Model from "./utils/adminModel.js"
+import Category from "./utils/category.js";
 import cors from "cors";
 
 
@@ -43,12 +44,12 @@ app.post("/signup", async (req, res) => {
     const { name, email, password, salary, address, category } = req.body;
 
     const data = {
-      name : name,
-      email : email,
-      password : password,
-      salary : salary,
-      address : address,
-      category : category
+      name: name,
+      email: email,
+      password: password,
+      salary: salary,
+      address: address,
+      category: category
     };
 
     const check = await Collection.findOne({ email: email });
@@ -72,24 +73,24 @@ app.get("/adminlogin", (req, res) => {
   res.json({ data: "this is the data" });
 });
 // ---------------------------------------------------
-app.post("/profile" , async (req , res) =>{
-  const {email} = req.body;
+app.post("/profile", async (req, res) => {
+  const { email } = req.body;
   try {
-    const user = await Model.findOne({email : email});
+    const user = await Model.findOne({ email: email });
     res.json(user);
   } catch (error) {
     console.error(err.message);
-    
+
   }
 })
-app.post("/employeedashboard" , async (req , res) =>{
-  const {email} = req.body;
+app.post("/employeedashboard", async (req, res) => {
+  const { email } = req.body;
   try {
-    const user = await Collection.findOne({email : email});
+    const user = await Collection.findOne({ email: email });
     res.json(user);
   } catch (error) {
     console.error(err.message);
-    
+
   }
 })
 
@@ -120,10 +121,10 @@ app.post("/adminsignup", async (req, res) => {
     const { name, email, password, address } = req.body;
 
     const data = {
-      name : name,
-      email : email,
-      password : password,
-      address : address,
+      name: name,
+      email: email,
+      password: password,
+      address: address,
     };
 
     const check = await Model.findOne({ email: email });
@@ -144,8 +145,8 @@ app.post("/adminsignup", async (req, res) => {
 
 app.get("/adsign", async (req, res) => {
   await Model.find()
-  .then(users => res.json(users))
-  .catch(users => res.json(error))
+    .then(users => res.json(users))
+    .catch(users => res.json(error))
 });
 
 app.delete("/adsign/:id", async (req, res) => {
@@ -164,7 +165,7 @@ app.put('/adsign/:id', async (req, res) => {
   const updatedData = req.body;
 
   try {
-    const updatedUser = await Model.updateOne({_id : userId}, {$set: updatedData});
+    const updatedUser = await Model.updateOne({ _id: userId }, { $set: updatedData });
     res.status(200).json(updatedUser);
   } catch (error) {
     console.error(error);
@@ -184,15 +185,36 @@ app.get("/adsign/:id", async (req, res) => {
 });
 
 
-
-
-
-
 app.get("/sign", async (req, res) => {
   await Collection.find()
-  .then(users => res.json(users))
-  .catch(users => res.json(error))
+    .then(users => res.json(users))
+    .catch(users => res.json(error))
 });
+
+// ---------------------------------Category-------------------------
+app.post("/categories" ,async (req, res) => {
+  try {
+    const {category} = req.body;
+    const data = {
+      category: category,
+    }
+    await Category.create(data);
+    res.status(201).send('Category added successfully');
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+
+});
+app.get("/fetchcategory" ,async (req, res) => {
+  await Category.find()
+    .then(users => res.json(users))
+    .catch(users => res.json(error))
+
+});
+
+
 
 app.listen(4000, () => {
   console.log("port connected");
