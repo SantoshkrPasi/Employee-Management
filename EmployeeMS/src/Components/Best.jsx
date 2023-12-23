@@ -12,7 +12,7 @@ const Best = () => {
         display :"flex",
         alignItems : "center",
         justifyContent : "space-around",
-        backgroundColor : "white",
+        backgroundColor: "rgba(255, 255, 255, 0.1)",
         opacity : "0.6",
         height : "150px",
         width : "400px",

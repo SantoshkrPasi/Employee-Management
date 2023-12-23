@@ -5,15 +5,15 @@ import axios from "axios";
 
 const Dashboard = () => {
   const anvigate = useNavigate();
-  const auth=123;
+  const auth = 123;
   axios.defaults.withCredentials = true;
   const handleLogout = () => {
-      anvigate('/');
-      }
+    anvigate('/');
+  }
   return (
     <div className="container-fluid">
       <div className="row flex-nowrap">
-        <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+        <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 asidebar" >
           <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
             <Link
               to="/dashboard"
@@ -74,12 +74,14 @@ const Dashboard = () => {
             </ul>
           </div>
         </div>
+
         <div className="col p-0 m-0">
-          <div className="p-2 d-flex justify-content-center shadow">
+          <div className="p-2 d-flex justify-content-center" style={{ backgroundColor: "black", color:"white" }}>
             <h4>Emoployee Management System</h4>
           </div>
           <Outlet />
         </div>
+
       </div>
     </div>
   );

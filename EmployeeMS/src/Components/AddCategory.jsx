@@ -21,23 +21,20 @@ const AddCategory = () => {
   }
 
   return (
-    <div className="d-flex justify-content-center align-items-center">
+    <div className="d-flex justify-content-center mt-5">
+
+
       <div className="p-3 rounded w-25 border">
-        <h2>Add Category</h2>
-        <form>
-          <div className="mb-3">
-            <label htmlFor="text">
-              <strong>Category:</strong>
-            </label>
-            <input
-              type="text"
-              name="category"
-              autoComplete="off"
-              placeholder="Enter Category"
-              onChange={(e) => setCategory(e.target.value)}
-              className="form-control rounded-0"
-            />
-          </div>
+        <h4>Add Category</h4>
+        <form className="d-flex flex-column gap-4 align-items-center">
+          <input
+            type="text"
+            name="category"
+            autoComplete="off"
+            placeholder="Enter Category"
+            onChange={(e) => setCategory(e.target.value)}
+            className="form-control rounded-0"
+          />
           <button
             className="btn btn-success w-75 rounded-0 mb-2"
             type="submit"
@@ -47,6 +44,8 @@ const AddCategory = () => {
           </button>
         </form>
       </div>
+
+
     </div>
   );
 };

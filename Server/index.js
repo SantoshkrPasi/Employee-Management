@@ -19,7 +19,7 @@ app.use(
   })
 );
 
-// ---------Employee
+// ---------Employee-----------------
 
 app.get("/login", (req, res) => {
   res.json({ data: "this is the data" });
@@ -63,6 +63,17 @@ app.post("/signup", async (req, res) => {
   } catch (e) {
     console.log(e);
     res.status(500).json("errot in the server");
+  }
+});
+
+
+app.delete("/employee/:id", async (req, res) => {
+  try {
+    const deletedItem = await Collection.findByIdAndDelete(req.params.id);
+    res.json(deletedItem);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
   }
 });
 

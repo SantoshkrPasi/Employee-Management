@@ -75,11 +75,7 @@ function Signup() {
           />
           </div>
         </form>
-      {/* <br /> */}
-      <p className="d-flex justify-content-center">OR</p>
-      {/* <br /> */}
-
-      <Link to="/adminlogin" className="d-flex justify-content-center">Login</Link>
+        <p className="d-flex mx-3">Alread have an account? <Link to="/adminlogin">Login</Link></p>
       </div>
     </div>
   );
