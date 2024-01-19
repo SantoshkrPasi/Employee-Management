@@ -21,7 +21,7 @@ function EditEmployee() {
     
         try {
           // Send a PUT request to update the employee data
-          await axios.put(`http://localhost:4000/adsign/${user_id}`, {
+          await axios.put(`https://employee-management-server-seven.vercel.app/adsign/${user_id}`, {
             name,
             email,
             password,

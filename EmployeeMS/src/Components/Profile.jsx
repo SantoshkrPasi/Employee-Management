@@ -13,7 +13,7 @@ const Profile = () => {
   const auth = localStorage.getItem("userauthtoken");
 
   const handle = async () => {
-    const res = await axios.post("http://localhost:4000/profile", {
+    const res = await axios.post("https://employee-management-server-seven.vercel.app/profile", {
       email: auth,
     });
     console.log(res.data);
