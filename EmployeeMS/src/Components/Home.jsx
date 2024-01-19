@@ -69,7 +69,7 @@ const Home = () => {
                   <td className="mb-3">{cnt++}</td>
                   <td className="mb-3">{user.email}</td>
                   <td className="mb-3">
-                    <Link to={`/dashboard/edit_employee?user_id=${user._id}`} type="button" className="btn btn-warning m-2">Edit</Link>
+                    <Link to={`/dashboard/edit_admin?user_id=${user._id}`} type="button" className="btn btn-warning m-2">Edit</Link>
                     <button type="button" className="btn btn-danger m-2" onClick={() => handleDelete(user._id)}>Delete</button>
                   </td>
                 </tr>

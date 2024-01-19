@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-mongoose.connect('mongodb://127.0.0.1:27017/createmydatabase')
-  .then(() => console.log('Connected!'));
+mongoose.connect('mongodb+srv://xuosRbFEuKrrWka7:santosh123@cluster0.4nmvhdh.mongodb.net/createmydatabase')
+  .then(() => console.log('MongoDB Connected!'));
 // Rest of your code...
 
 

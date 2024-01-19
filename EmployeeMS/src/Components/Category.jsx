@@ -6,6 +6,13 @@ import axios from 'axios';
 const Category = () => {
   var cnt = 1;
  
+  const [Users , setUsers] = useState([])
+  useEffect(() => {
+   axios.get('http://localhost:4000/fetchcategory')
+   .then(Users => setUsers(Users.data))
+   .catch(err => console.log(err))
+  },[]);
+
   return (
     <div>
        <div className='d-flex justify-content-center'>
@@ -23,18 +30,14 @@ const Category = () => {
             </tr>
           </thead>
           <tbody>
-            {/* {
+            {
               Users.map(user => {
                 return <tr key={user._id} >
                   <td className="mb-3">{cnt++}</td>
                   <td className="mb-3">{user.category}</td>
-                  <td className="mb-3">
-                    <Link to = {`/dashboard/edit_employee?user_id=${user._id}`}  type="button" className="btn btn-warning m-2">Edit</Link>
-                    <button type="button" className="btn btn-danger m-2" onClick={() => handleDelete(user._id)}>Delete</button>
-                  </td>
                 </tr>
               })
-            } */}
+            }
           </tbody>
         </table>
     </div>    

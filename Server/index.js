@@ -170,7 +170,7 @@ app.delete("/adsign/:id", async (req, res) => {
   }
 });
 
-// Update user by ID
+// Update Admin_user by ID
 app.put('/adsign/:id', async (req, res) => {
   const userId = req.params.id;
   const updatedData = req.body;
@@ -225,7 +225,20 @@ app.get("/fetchcategory" ,async (req, res) => {
 
 });
 
+// -----------------------------EmployeeEdit-------------------
+// Update Emplyee by ID
+app.put('/sign/:id', async (req, res) => {
+  const userId = req.params.id;
+  const updatedData = req.body;
 
+  try {
+    const updatedUser = await Collection.updateOne({ _id: userId }, { $set: updatedData });
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 app.listen(4000, () => {
   console.log("port connected");
