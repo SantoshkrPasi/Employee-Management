@@ -13,16 +13,13 @@ app.use(express.urlencoded({ extended: true }));
 
 // Allow requests from 'http://localhost:5173'
 app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
+  cors()
 );
 
 // ---------Employee-----------------
 
-app.get("/login", (req, res) => {
-  res.json({ data: "this is the data" });
+app.get("/", (req, res) => {
+  res.end("Welcome Database");
 });
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -239,7 +236,7 @@ app.put('/sign/:id', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
-app.listen(4000, () => {
-  console.log("port connected");
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log("port connected" + port);
 });
