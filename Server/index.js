@@ -4,13 +4,14 @@ import Model from "./utils/adminModel.js"
 import Category from "./utils/category.js";
 import cors from "cors";
 
+const app = express();
+
+// CORS middleware should be placed before route definitions
 app.use(cors({
-  origin: '"https://employee-management-server-seven.vercel.app',
+  origin: 'https://employee-management-server-seven.vercel.app',
   credentials: true,
 }));
 
-
-const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(cors());
