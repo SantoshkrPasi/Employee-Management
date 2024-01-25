@@ -4,11 +4,23 @@ import Model from "./utils/adminModel.js"
 import Category from "./utils/category.js";
 import cors from "cors";
 
+const allowedOrigins = ['https://employee-management-server-seven.vercel.app'];
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // This is important for allowing credentials (cookies, HTTP authentication) in the request
+}));
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+
+
 // ---------
 
 // Allow requests from 'http://localhost:5173'
