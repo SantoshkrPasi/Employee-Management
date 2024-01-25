@@ -11,6 +11,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 // ---------
 
+// Allow requests from 'http://localhost:5173'
+// app.use(
+//   cors()
+// );
 
 // ---------Employee-----------------
 
