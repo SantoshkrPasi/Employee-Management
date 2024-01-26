@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import './style.css';
 
 const Profile = () => {
@@ -16,7 +16,6 @@ const Profile = () => {
     const res = await axios.post("http://localhost:4000/profile", {
       email: auth,
     });
-    console.log(res.data);
     setUsers(res.data);
   }
   useEffect(() => {

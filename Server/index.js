@@ -8,21 +8,25 @@ import cors from "cors";
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(cors())
-// ---------
+
+
+// 
+
+
+
 
 // Allow requests from 'http://localhost:5173'
 app.use(
   cors({
     origin: "http://localhost:5173",
+    methods :['GET' , 'POST' , 'PUT' , 'DELETE'],
     credentials: true,
   })
 );
-
 // ---------Employee-----------------
 
-app.get("/login", (req, res) => {
-  res.json({ data: "this is the data" });
+app.get("/", (req, res) => {
+  res.end("Welcome Database");
 });
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -170,7 +174,7 @@ app.delete("/adsign/:id", async (req, res) => {
   }
 });
 
-// Update user by ID
+// Update Admin_user by ID
 app.put('/adsign/:id', async (req, res) => {
   const userId = req.params.id;
   const updatedData = req.body;
@@ -224,9 +228,32 @@ app.get("/fetchcategory" ,async (req, res) => {
     .catch(users => res.json(error))
 
 });
+app.delete('/fetchcategory/:id' , async (req , res) =>{
+  try {
+    const deletedItem = await Category.findByIdAndDelete(req.params.id);
+    res.json(deletedItem);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
 
+});
 
+// -----------------------------EmployeeEdit-------------------
+// Update Emplyee by ID
+app.put('/sign/:id', async (req, res) => {
+  const userId = req.params.id;
+  const updatedData = req.body;
 
-app.listen(4000, () => {
-  console.log("port connected");
+  try {
+    const updatedUser = await Collection.updateOne({ _id: userId }, { $set: updatedData });
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log("port connected" + port);
 });

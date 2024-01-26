@@ -119,11 +119,11 @@ function AddEmployee() {
               >
                 {
                 Users.map(user => {
-                return <option key={user._id} value={user._id}>
+                return <option key={user._id} value={user.category}>
                   {user.category}
                  </option>
                 })
-                }               
+                }            
               </select>
             </div>
 
