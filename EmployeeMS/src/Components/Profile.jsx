@@ -5,6 +5,22 @@ import './style.css';
 
 const Profile = () => {
 
+  const myComponentStyles = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '80vh',
+    flexDirection: 'column',
+    backgroundColor : 'aliceblue'
+  
+  };
+
+  const container = {
+    padding: '20px',
+    backgroundColor: 'lightblue',
+    borderRadius: '5px',
+  };
+
   const [Users, setUsers] = useState(null);
 
   // let {search} = useLocation();
@@ -23,13 +39,13 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="profile">
+    <div style={myComponentStyles}>
     {Users !== null && (
-      <div style={{ display: "flex", flexDirection: "column" ,alignItems : "center" , marginTop : "150px" }}>
-        <p><strong>Name :</strong> {Users.name}</p>
-        <p style={{marginLeft : "95px"}}> <strong>Email :</strong> {Users.email}</p>
+      <div style={container}>
+        <p><strong>Name : </strong>{Users.name}</p>
+        <p><strong>Email : </strong>{Users.email}</p>
         <p><strong>Password :</strong>  {Users.password}</p>
-        <p style={{marginRight : "10px"}}><strong >Address :</strong> {Users.address}</p>
+        <p><strong >Address : </strong>{Users.address}</p>
       </div>
     )}
   </div>

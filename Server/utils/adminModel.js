@@ -1,10 +1,15 @@
 import mongoose from "mongoose";
 
-mongoose.connect('mongodb://127.0.0.1:27017/createmydatabase')
-  .then(() => console.log('Connected!'));
+// mongoose.connect('santoshpasi6566@gmail.com')
+//   .then(() => console.log('Connected!'));
+
+const connectDB = async()=>{
+    await mongoose.connect('mongodb+srv://ksant2064:sGC5edvImwosc2fm@cluster0.y48n8zi.mongodb.net/employeeDatabase')
+    console.log("Admin Connected")
+}
 // Rest of your code...
 
-
+connectDB();
 
 const newSchema=new mongoose.Schema({
     name:{
