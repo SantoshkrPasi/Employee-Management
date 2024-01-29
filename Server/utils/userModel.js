@@ -10,6 +10,8 @@ const connectDB = async()=>{
     console.log("Emplyee Connected")
   }
 
+  connectDB();
+
 const newSchema=new mongoose.Schema({
     name:{
         type:String,

@@ -1,10 +1,16 @@
 import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
 import Collection from "./utils/userModel.js";
 import Model from "./utils/adminModel.js";
 import Category from "./utils/category.js";
-import cors from "cors";
+import { setUser } from "./services/auth.js";
+import authenticateMiddleware from "./middleware/authMiddleware.js";
+// import authenticateMiddleware from './middleware/authMiddleware.js'
 
 const app = express();
+// app.use(cookieParser());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
@@ -16,19 +22,28 @@ app.use(
 );
 
 
+// app.use(authenticateMiddleware);
+
 // ==============================Admin======================
 
-app.get("/adminlogin", (req, res) => {
-  res.json({ data: "this is the data" });
-});
+// app.get("/adminlogin", (req, res) => {
+//   res.json({ data: "this is the data" });
+// });
 
 app.post("/adminlogin", async (req, res) => {
   const { email, password } = req.body;
+
+  // console.log(setUser({body:"anil"}))
+  // res.json({body:"anil"})
   try {
     const check = await Model.findOne({ email: email });
+    const token = setUser({ _id : check._id , email : check.email , type : 'admin'});
+    res.cookie("token" , token);
 
+    // console.log(res)
+       //authentication
     if (check) {
-      res.status(200).json({});
+      res.status(200).json({ token: token});
     } else {
       res.status(401).json({});
     }
@@ -64,8 +79,9 @@ app.post("/adminsignup", async (req, res) => {
   }
 });
 
-app.post("/profile", async (req, res) => {
+app.post("/profile",authenticateMiddleware, async (req, res) => {
   const { email } = req.body;
+  // console.log(req.body);
   try {
     const user = await Model.findOne({ email: email });
     res.json(user);
@@ -74,7 +90,7 @@ app.post("/profile", async (req, res) => {
   }
 });
 
-app.get("/adsign/:id", async (req, res) => {
+app.get("/adsign/:id",authenticateMiddleware, async (req, res) => {
   const userId = req.params.userId;
   try {
     const user = await Model.findById(userId);
@@ -101,7 +117,7 @@ app.put("/adsign/:id", async (req, res) => {
   }
 });
 
-app.get("/adsign", async (req, res) => {
+app.get("/adsign", authenticateMiddleware ,async (req, res) => {
   await Model.find()
     .then((users) => res.json(users))
     .catch((users) => res.json(error));
@@ -119,7 +135,7 @@ app.delete("/adsign/:id", async (req, res) => {
 
 // ====================Category============================
 
-app.post("/categories", async (req, res) => {
+app.post("/categories", authenticateMiddleware ,async (req, res) => {
   try {
     const { category } = req.body;
     const data = {
@@ -132,12 +148,12 @@ app.post("/categories", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-app.get("/fetchcategory", async (req, res) => {
+app.get("/fetchcategory", authenticateMiddleware, async (req, res) => {
   await Category.find()
     .then((users) => res.json(users))
     .catch((users) => res.json(error));
 });
-app.delete("/fetchcategory/:id", async (req, res) => {
+app.delete("/fetchcategory/:id",authenticateMiddleware, async (req, res) => {
   try {
     const deletedItem = await Category.findByIdAndDelete(req.params.id);
     res.json(deletedItem);
@@ -156,9 +172,11 @@ app.get("/", (req, res) => {
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const check = await Collection.findOne({ email: email });
 
-    if (check) {
+    const check = await Collection.findOne({ email: email });
+    const token = setUser({_id: check._id, email: check.email , type : 'employee' });
+      res.cookie("token" , token);
+     if (check) {
       res.status(200).json({});
     } else {
       res.status(401).json({});
@@ -168,7 +186,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.post("/signup", async (req, res) => {
+app.post("/signup", authenticateMiddleware ,async (req, res) => {
   try {
     const { name, email, password, salary, address, category } = req.body;
 
@@ -205,17 +223,18 @@ app.delete("/employee/:id", async (req, res) => {
   }
 });
 
-app.post("/employeedashboard", async (req, res) => {
+app.post("/employeedashboard", authenticateMiddleware ,async (req, res) => {
   const { email } = req.body;
-  try {
-    const user = await Collection.findOne({ email: email });
-    res.json(user);
+  console.log(req.body)
+   try {
+     const user = await Collection.findOne({ email: email });
+     res.json(user);
   } catch (error) {
     console.error(err.message);
   }
 });
 
-app.get("/sign", async (req, res) => {
+app.get("/sign", authenticateMiddleware ,async (req, res) => {
   await Collection.find()
     .then((users) => res.json(users))
     .catch((users) => res.json(error));
@@ -238,5 +257,5 @@ app.put("/sign/:id", async (req, res) => {
 });
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
-  console.log("port connected" + port);
+  console.log("port connected " + port);
 });

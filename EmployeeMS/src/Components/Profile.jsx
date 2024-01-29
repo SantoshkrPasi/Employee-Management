@@ -25,7 +25,7 @@ const Profile = () => {
 
   // let {search} = useLocation();
   // const queryParams = new URLSearchParams(search);
-  const { userid } = useParams();
+  // const { userid } = useParams();
   const auth = localStorage.getItem("userauthtoken");
 
   const handle = async () => {

@@ -26,14 +26,14 @@ function EmployeeDashboard() {
   const [Users, setUsers] = useState(null);
 
   const auth = localStorage.getItem("userauthtoken");
-
   const handle = async () => {
     const res = await axios.post("http://localhost:4000/employeedashboard", {
       email: auth,
     });
-    console.log(res.data);
     setUsers(res.data);
   };
+
+  
   useEffect(() => {
     handle();
   }, []);
