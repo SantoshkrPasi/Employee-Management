@@ -14,11 +14,11 @@ import Best from './Components/Best';
 import EmployeeLogin from './Components/Emplyeelogin'
 import EmployeeDashboard from './Components/EmployeeDashboard';
 import EditEmployee from './Components/EditEmployee';
+import useAuth from './Components/Auth/useAuth';
 
 
 function App() {
-
-  return (
+    return (
    <BrowserRouter> 
    <Routes>
     <Route path='/' element={<Best />}></Route>
@@ -34,7 +34,7 @@ function App() {
         <Route path='/dashboard/profile' element={<Profile />}></Route>
         <Route path='/dashboard/add_category' element={<AddCategory/>}></Route>
         <Route path='/dashboard/add_employee' element={<AddEmployee/>}></Route>
-     </Route>
+    </Route>      
    </Routes>
    </BrowserRouter>
   )

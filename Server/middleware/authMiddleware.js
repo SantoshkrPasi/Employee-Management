@@ -17,7 +17,7 @@ const authenticateMiddleware = (req ,res , next) =>{
     // retrieving the token from request
     // console.log(req.headers.cookie)
     const {token} = parseCookies(req.headers.cookie)
-    console.log("token",token)
+    // console.log("token",token)
     if(!token)
     {
         return res.status(401).json({message : "Unauthorized"});

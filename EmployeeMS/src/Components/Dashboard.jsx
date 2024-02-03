@@ -1,15 +1,34 @@
 import React from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import useAuth from './Auth/useAuth';
 import axios from "axios";
+import { useCookies } from 'react-cookie';
+
 
 const Dashboard = () => {
-  const anvigate = useNavigate();
-  const auth = 123;
   axios.defaults.withCredentials = true;
-  const handleLogout = () => {
-    anvigate('/');
-  }
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+
+//======
+const [cookies, setCookie, removeCookie] = useCookies(['token']);
+
+const handleLogout = () => {
+  // Replace 'cookie1' with the name of the cookie you want to delete
+  removeCookie('token');
+  navigate('/adminlogin');
+  // Additional logout logic...
+};
+
+
+// =====
+  // const handleLogout = () => {
+  //   logout();
+  //   navigate('/adminlogin');
+
+  // }
   return (
     <div className="container-fluid">
       <div className="row flex-nowrap">

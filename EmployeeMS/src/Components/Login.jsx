@@ -22,7 +22,7 @@ const Login = () => {
             })
 
             if(res.status == 200){
-                localStorage.setItem('userauthtoken' , values.email);
+                localStorage.setItem('admintoken' , values.email);
                 //  setTimeout()
                 navigate("/dashboard");
             }

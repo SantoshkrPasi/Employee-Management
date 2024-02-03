@@ -26,7 +26,7 @@ const Profile = () => {
   // let {search} = useLocation();
   // const queryParams = new URLSearchParams(search);
   // const { userid } = useParams();
-  const auth = localStorage.getItem("userauthtoken");
+  const auth = localStorage.getItem("admintoken");
 
   const handle = async () => {
     const res = await axios.post("http://localhost:4000/profile", {

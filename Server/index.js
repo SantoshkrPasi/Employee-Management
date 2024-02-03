@@ -176,6 +176,7 @@ app.post("/login", async (req, res) => {
     const check = await Collection.findOne({ email: email });
     const token = setUser({_id: check._id, email: check.email , type : 'employee' });
       res.cookie("token" , token);
+     
      if (check) {
       res.status(200).json({});
     } else {
