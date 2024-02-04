@@ -39,7 +39,7 @@ function EmployeeDashboard() {
   }, []);
 
   const handleLogout = () => {
-    Navigate('/employeelogin');
+    Navigate('/');
   };
 
   return (

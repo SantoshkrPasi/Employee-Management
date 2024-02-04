@@ -26,7 +26,7 @@ const authenticateMiddleware = (req ,res , next) =>{
         // verifying the token 
         const payload = jwt.verify(token , secret);
         req.user = payload;
-        console.log("CHECK > : ",payload)
+        // console.log("CHECK > : ",payload)
         next();
     } catch (error) {
         res.status(401).json({ message: 'Invalid token' });
