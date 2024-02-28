@@ -54,13 +54,14 @@ app.post("/adminlogin", async (req, res) => {
 
 app.post("/adminsignup", async (req, res) => {
   try {
-    const { name, email, password, address } = req.body;
+    const { name, email, password, address ,image} = req.body;
 
     const data = {
       name: name,
       email: email,
       password: password,
       address: address,
+      image: image,
     };
 
     const check = await Model.findOne({ email: email });
@@ -188,7 +189,7 @@ app.post("/login", async (req, res) => {
 
 app.post("/signup", authenticateMiddleware ,async (req, res) => {
   try {
-    const { name, email, password, salary, address, category } = req.body;
+    const { name, email, password, salary, address, category, image } = req.body;
 
     const data = {
       name: name,
@@ -197,6 +198,7 @@ app.post("/signup", authenticateMiddleware ,async (req, res) => {
       salary: salary,
       address: address,
       category: category,
+      image: image,
     };
 
     const check = await Collection.findOne({ email: email });

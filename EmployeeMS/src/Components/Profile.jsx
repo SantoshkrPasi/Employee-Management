@@ -16,10 +16,22 @@ const Profile = () => {
   };
 
   const container = {
+    display: 'flex',
+    flexDirection : 'row-reverse',
     padding: '20px',
     backgroundColor: 'lightblue',
     borderRadius: '5px',
   };
+
+  const image = {
+    height : '400px',
+    width : "400px",
+  }
+
+  const contents ={
+    margin : "10px",
+    padding : "10px",
+  }
 
   const [Users, setUsers] = useState(null);
 
@@ -42,10 +54,15 @@ const Profile = () => {
     <div style={myComponentStyles}>
     {Users !== null && (
       <div style={container}>
+        <div style={contents}>
         <p><strong>Name : </strong>{Users.name}</p>
         <p><strong>Email : </strong>{Users.email}</p>
         <p><strong>Password :</strong>  {Users.password}</p>
         <p><strong >Address : </strong>{Users.address}</p>
+        </div>
+        <div>
+        <img src={Users.image} alt="image" style={image}/>
+        </div>
       </div>
     )}
   </div>
