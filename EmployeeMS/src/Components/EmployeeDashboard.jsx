@@ -37,7 +37,7 @@ function EmployeeDashboard() {
 
   const auth = localStorage.getItem("userauthtoken");
   const handle = async () => {
-    const res = await axios.post("http://localhost:4000/employeedashboard", {
+    const res = await axios.post("https://employee-management-server-kappa.vercel.app/employeedashboard", {
       email: auth,
     });
     setUsers(res.data);

@@ -42,7 +42,7 @@ function AddEmployee() {
     try {
       console.log("request called");
 
-      const res = await axios.post("http://localhost:4000/signup", {
+      const res = await axios.post("https://employee-management-server-kappa.vercel.app/signup", {
         name,
         email,
         password,

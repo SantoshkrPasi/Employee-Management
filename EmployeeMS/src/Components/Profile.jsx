@@ -41,7 +41,7 @@ const Profile = () => {
   const auth = localStorage.getItem("admintoken");
 
   const handle = async () => {
-    const res = await axios.post("http://localhost:4000/profile", {
+    const res = await axios.post("https://employee-management-server-kappa.vercel.app/profile", {
       email: auth,
     });
     setUsers(res.data);

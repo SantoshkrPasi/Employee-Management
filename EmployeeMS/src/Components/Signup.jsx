@@ -30,7 +30,7 @@ function Signup() {
     try {
       console.log("request called");
 
-      const res = await axios.post("http://localhost:4000/adminsignup", {
+      const res = await axios.post("https://employee-management-server-kappa.vercel.app/adminsignup", {
         name,
         email,
         password,

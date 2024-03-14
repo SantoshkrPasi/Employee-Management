@@ -13,13 +13,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+app.use(cors());
 
 
 // app.use(authenticateMiddleware);
@@ -76,7 +70,7 @@ app.post("/adminsignup", async (req, res) => {
     }
   } catch (e) {
     console.log(e);
-    res.status(500).json("errot in the server");
+    res.status(500).json("error in the server");
   }
 });
 

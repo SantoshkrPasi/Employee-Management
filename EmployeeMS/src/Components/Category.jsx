@@ -15,7 +15,7 @@ const Category = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/fetchcategory/${id}`);
+      await axios.delete(`https://employee-management-server-kappa.vercel.app/fetchcategory/${id}`);
       setUsers(Users.filter((user) => user._id !== id));
     }
     catch (error) {

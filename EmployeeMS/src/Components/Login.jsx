@@ -16,7 +16,7 @@ const Login = () => {
        
         e.preventDefault();
         try{
-            const res = await axios.post("http://localhost:4000/adminlogin",{
+            const res = await axios.post("https://employee-management-server-kappa.vercel.app/adminlogin",{
             email: values.email,
             password: values.password
             })

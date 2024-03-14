@@ -8,7 +8,7 @@ function EditEmployee() {
 
     const [Users , setUsers] = useState([])
     useEffect(() => {
-     axios.get('http://localhost:4000/fetchcategory')
+     axios.get('https://employee-management-server-kappa.vercel.app/fetchcategory')
      .then(Users => setUsers(Users.data))
      .catch(err => console.log(err))
     },[])
