@@ -41,7 +41,7 @@ const Login = () => {
             <h2>Admin Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className='mb-3'>
-                    <label htmlFor="email"><strong>Email:</strong></label>
+                    <label htmlFor="email"><strong>EMAIL:</strong></label>
                     <input type="email" name='email' autoComplete='off' placeholder='Enter Email'
                      onChange={(e) => setValues({...values, email : e.target.value})} className='form-control rounded-0'/>
                 </div>
