@@ -23,15 +23,12 @@ const Login = () => {
 
             if(res.status == 200){
                 localStorage.setItem('admintoken' , values.email);
-                //  setTimeout()
                 navigate("/dashboard");
-            }
-            else {
-                alert("User have not sign up")
             }
         }
         catch(e){
             console.log(e);
+            alert("Wrong Email and Password")
         }
 
     }

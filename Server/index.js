@@ -1,16 +1,10 @@
 import express from "express";
-import cookieParser from "cookie-parser";
 import cors from "cors";
 import Collection from "./utils/userModel.js";
 import Model from "./utils/adminModel.js";
 import Category from "./utils/category.js";
-import { setUser } from "./services/auth.js";
-import authenticateMiddleware from "./middleware/authMiddleware.js";
-// import authenticateMiddleware from './middleware/authMiddleware.js'
 
 const app = express();
-// app.use(cookieParser());
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
@@ -21,27 +15,12 @@ app.use(
   })
 );
 
-
-// app.use(authenticateMiddleware);
-
 // ==============================Admin======================
-
-// app.get("/adminlogin", (req, res) => {
-//   res.json({ data: "this is the data" });
-// });
 
 app.post("/adminlogin", async (req, res) => {
   const { email, password } = req.body;
-
-  // console.log(setUser({body:"anil"}))
-  // res.json({body:"anil"})
   try {
-    const check = await Model.findOne({ email: email });
-    const token = setUser({ _id : check._id , email : check.email , type : 'admin'});
-    res.cookie("token" , token);
-
-    // console.log(res)
-       //authentication
+    const check = await Model.findOne({ email: email , password : password});
     if (check) {
       res.status(200).json({ token: token});
     } else {
@@ -80,9 +59,8 @@ app.post("/adminsignup", async (req, res) => {
   }
 });
 
-app.post("/profile",authenticateMiddleware, async (req, res) => {
+app.post("/profile", async (req, res) => {
   const { email } = req.body;
-  // console.log(req.body);
   try {
     const user = await Model.findOne({ email: email });
     res.json(user);
@@ -91,7 +69,7 @@ app.post("/profile",authenticateMiddleware, async (req, res) => {
   }
 });
 
-app.get("/adsign/:id",authenticateMiddleware, async (req, res) => {
+app.get("/adsign/:id", async (req, res) => {
   const userId = req.params.userId;
   try {
     const user = await Model.findById(userId);
@@ -118,7 +96,7 @@ app.put("/adsign/:id", async (req, res) => {
   }
 });
 
-app.get("/adsign", authenticateMiddleware ,async (req, res) => {
+app.get("/adsign", async (req, res) => {
   await Model.find()
     .then((users) => res.json(users))
     .catch((users) => res.json(error));
@@ -136,7 +114,7 @@ app.delete("/adsign/:id", async (req, res) => {
 
 // ====================Category============================
 
-app.post("/categories", authenticateMiddleware ,async (req, res) => {
+app.post("/categories", async (req, res) => {
   try {
     const { category } = req.body;
     const data = {
@@ -149,12 +127,12 @@ app.post("/categories", authenticateMiddleware ,async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
-app.get("/fetchcategory", authenticateMiddleware, async (req, res) => {
+app.get("/fetchcategory",  async (req, res) => {
   await Category.find()
     .then((users) => res.json(users))
     .catch((users) => res.json(error));
 });
-app.delete("/fetchcategory/:id",authenticateMiddleware, async (req, res) => {
+app.delete("/fetchcategory/:id", async (req, res) => {
   try {
     const deletedItem = await Category.findByIdAndDelete(req.params.id);
     res.json(deletedItem);
@@ -173,10 +151,7 @@ app.get("/", (req, res) => {
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   try {
-
-    const check = await Collection.findOne({ email: email });
-    const token = setUser({_id: check._id, email: check.email , type : 'employee' });
-      res.cookie("emptoken" , token);
+    const check = await Collection.findOne({ email: email  ,password : password});
      if (check) {
       res.status(200).json({});
     } else {
@@ -187,10 +162,9 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.post("/signup", authenticateMiddleware ,async (req, res) => {
+app.post("/signup", async (req, res) => {
   try {
     const { name, email, password, salary, address, category, image } = req.body;
-
     const data = {
       name: name,
       email: email,
@@ -225,7 +199,7 @@ app.delete("/employee/:id", async (req, res) => {
   }
 });
 
-app.post("/employeedashboard", authenticateMiddleware ,async (req, res) => {
+app.post("/employeedashboard", async (req, res) => {
   const { email } = req.body;
   console.log(req.body)
    try {
@@ -236,7 +210,7 @@ app.post("/employeedashboard", authenticateMiddleware ,async (req, res) => {
   }
 });
 
-app.get("/sign", authenticateMiddleware ,async (req, res) => {
+app.get("/sign", async (req, res) => {
   await Collection.find()
     .then((users) => res.json(users))
     .catch((users) => res.json(error));

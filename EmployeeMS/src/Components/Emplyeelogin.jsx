@@ -25,16 +25,12 @@ const Login = () => {
                 localStorage.setItem('userauthtoken' , values.email);
                  navigate("/employeedash")
             }
-            else {
-                alert("User have not sign up")
-            }
         }
         catch(e){
-            console.log(e);
+            alert("Wrong Email And Password")
         }
 
     }
-
 
   return (
     <div className='d-flex justify-content-center align-items-center vh-100 loginPage'>
