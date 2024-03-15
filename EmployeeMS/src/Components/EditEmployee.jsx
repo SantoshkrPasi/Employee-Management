@@ -8,7 +8,11 @@ function EditEmployee() {
 
     const [Users , setUsers] = useState([])
     useEffect(() => {
+<<<<<<< HEAD
+     axios.get('http://localhost:4000/fetchcategory')
+=======
      axios.get('https://employee-management-server-seven.vercel.app/fetchcategory')
+>>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
      .then(Users => setUsers(Users.data))
      .catch(err => console.log(err))
     },[])
@@ -34,7 +38,11 @@ function EditEmployee() {
     
         try {
           // Send a PUT request to update the employee data
+<<<<<<< HEAD
+          await axios.put(`http://localhost:4000/sign/${user_id}`, {
+=======
           await axios.put(`https://employee-management-server-seven.vercel.app/sign/${user_id}`, {
+>>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
             name,
             email,
             password,

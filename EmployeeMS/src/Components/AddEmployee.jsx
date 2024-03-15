@@ -21,6 +21,20 @@ function AddEmployee() {
   const [salary, setSalary] = useState("");
   const [address, setAddress] = useState("");
   const [category, setCategory] = useState("");
+  const [image, setImage] = useState("");
+
+  function convertToBase64(e)
+  {
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      setImage(reader.result);
+    };
+    reader.onerror = (error) => {
+      console.error("Error", error);
+    };
+  }
+
 
   async function submit(e) {
     e.preventDefault();
@@ -35,6 +49,7 @@ function AddEmployee() {
         salary,
         address,
         category,
+        image,
       });
 
       if (res.data == "exist") {
@@ -128,7 +143,13 @@ function AddEmployee() {
             </div>
 
             <label htmlFor="text">Select Image</label>
-            <input type="file" className="form-control rounded-0"></input>
+             <input
+              type="file"
+              id="image"
+              name="image"
+              className="form-control rounded-0"
+              onChange={convertToBase64}
+              />          
           </div>
           <input
             type="submit"

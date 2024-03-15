@@ -17,9 +17,9 @@ import EditAdmin from './Components/EditAdmin';
 import EditEmployee from './Components/EditEmployee';
 
 
-function App() {
 
-  return (
+function App() {
+    return (
    <BrowserRouter> 
    <Routes>
     <Route path='/' element={<Best />}></Route>
@@ -36,7 +36,7 @@ function App() {
         <Route path='/dashboard/profile' element={<Profile />}></Route>
         <Route path='/dashboard/add_category' element={<AddCategory/>}></Route>
         <Route path='/dashboard/add_employee' element={<AddEmployee/>}></Route>
-     </Route>
+    </Route>      
    </Routes>
    </BrowserRouter>
   )

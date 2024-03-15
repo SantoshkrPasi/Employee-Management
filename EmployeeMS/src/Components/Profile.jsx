@@ -1,22 +1,49 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate, Link, useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import './style.css';
 
 const Profile = () => {
+
+  const myComponentStyles = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '80vh',
+    flexDirection: 'column',
+    backgroundColor : 'aliceblue'
+  
+  };
+
+  const container = {
+    display: 'flex',
+    flexDirection : 'row-reverse',
+    padding: '20px',
+    backgroundColor: 'lightblue',
+    borderRadius: '5px',
+  };
+
+  const image = {
+    height : '400px',
+    width : "400px",
+  }
+
+  const contents ={
+    margin : "10px",
+    padding : "10px",
+  }
 
   const [Users, setUsers] = useState(null);
 
   // let {search} = useLocation();
   // const queryParams = new URLSearchParams(search);
-  const { userid } = useParams();
-  const auth = localStorage.getItem("userauthtoken");
+  // const { userid } = useParams();
+  const auth = localStorage.getItem("admintoken");
 
   const handle = async () => {
     const res = await axios.post("https://employee-management-server-seven.vercel.app/profile", {
       email: auth,
     });
-    console.log(res.data);
     setUsers(res.data);
   }
   useEffect(() => {
@@ -24,13 +51,18 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="profile">
+    <div style={myComponentStyles}>
     {Users !== null && (
-      <div style={{ display: "flex", flexDirection: "column" ,alignItems : "center" , marginTop : "150px" }}>
-        <p><strong>Name :</strong> {Users.name}</p>
-        <p style={{marginLeft : "95px"}}> <strong>Email :</strong> {Users.email}</p>
+      <div style={container}>
+        <div style={contents}>
+        <p><strong>Name : </strong>{Users.name}</p>
+        <p><strong>Email : </strong>{Users.email}</p>
         <p><strong>Password :</strong>  {Users.password}</p>
-        <p style={{marginRight : "10px"}}><strong >Address :</strong> {Users.address}</p>
+        <p><strong >Address : </strong>{Users.address}</p>
+        </div>
+        <div>
+        <img src={Users.image} alt="image" style={image}/>
+        </div>
       </div>
     )}
   </div>

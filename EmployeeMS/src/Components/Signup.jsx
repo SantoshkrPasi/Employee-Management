@@ -10,6 +10,19 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
+  const [image, setImage] = useState("");
+
+  function convertToBase64(e)
+  {
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      setImage(reader.result);
+    };
+    reader.onerror = (error) => {
+      console.error("Error", error);
+    };
+  }
 
   async function submit(e) {
     e.preventDefault();
@@ -22,6 +35,7 @@ function Signup() {
         email,
         password,
         address,
+        image,
       });
       localStorage.setItem('userauthtoken' , email);
       history("/dashboard");
@@ -43,6 +57,7 @@ function Signup() {
             <label htmlFor="text">Email</label>
             <input
               type="email"
+              name="email"
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -62,18 +77,26 @@ function Signup() {
             <label htmlFor="text">Address</label>
             <input
               type="text"
-              name="email"
+              name="address"
               autoComplete="off"
               placeholder="Address...."
               onChange={(e) => setAddress(e.target.value)}
               className="form-control rounded-0"
             />
+             <label htmlFor="text">Select Image</label>
+             <input
+              type="file"
+              id="image"
+              name="image"
+              className="form-control rounded-0"
+              onChange={convertToBase64}
+              />          
           <input
             type="submit"
             onClick={submit}
             className="btn btn-success mt-3"
-          />
-          </div>
+            />
+            </div>
         </form>
         <p className="d-flex mx-3">Alread have an account? <Link to="/adminlogin">Login</Link></p>
       </div>
