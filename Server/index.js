@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ["http://localhost:5173/"],
+    origin: ["http://localhost:5173",'https://employee-management-one-lovat.vercel.app'],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -24,8 +24,9 @@ app.post("/adminlogin", async (req, res) => {
   const { email, password } = req.body;
   try {
     const check = await Model.findOne({ email: email , password : password});
+    console.log('check')
     if (check) {
-      res.status(200).json({ token: token});
+      res.status(200).json({});
     } else {
       res.status(401).json({});
     }
