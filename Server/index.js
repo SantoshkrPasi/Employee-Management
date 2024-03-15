@@ -16,7 +16,9 @@ app.use(
 );
 
 // ==============================Admin======================
-
+app.get('/home',async(req,res)=>{
+  res.status(200).json('server is connected')
+})
 app.post("/adminlogin", async (req, res) => {
   const { email, password } = req.body;
   try {
