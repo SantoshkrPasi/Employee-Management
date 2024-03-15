@@ -9,14 +9,14 @@ const Home = () => {
 
 
   useEffect(() => {
-    axios.get('https://employee-management-server-seven.vercel.app/adsign').then(Users => setUsers(Users.data)).catch(err => console.log(err))
-    axios.get('https://employee-management-server-seven.vercel.app/sign').then(Empers => setEmpers(Empers.data)).catch(err => console.log(err))
+    axios.get(`${import.meta.env.VITE_BASE_URL}/adsign`).then(Users => setUsers(Users.data)).catch(err => console.log(err))
+    axios.get(`${import.meta.env.VITE_BASE_URL}/sign`).then(Empers => setEmpers(Empers.data)).catch(err => console.log(err))
   }, [])
 
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://employee-management-server-seven.vercel.app/adsign/${id}`);
+      await axios.delete(`${import.meta.env.VITE_BASE_URL}/adsign/${id}`);
       setUsers(Users.filter((user) => user._id !== id));
     }
     catch (error) {

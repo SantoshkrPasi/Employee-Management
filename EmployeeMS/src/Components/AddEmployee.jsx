@@ -7,7 +7,7 @@ function AddEmployee() {
 
   const [Users , setUsers] = useState([])
   useEffect(() => {
-   axios.get('https://employee-management-server-seven.vercel.app/fetchcategory')
+   axios.get(`${import.meta.env.VITE_BASE_URL}/fetchcategory`)
    .then(Users => setUsers(Users.data))
    .catch(err => console.log(err))
   },[])
@@ -42,7 +42,7 @@ function AddEmployee() {
     try {
       console.log("request called");
 
-      const res = await axios.post("https://employee-management-server-seven.vercel.app/signup", {
+      const res = await axios.post(`${import.meta.env.BASE_URL}/signup`, {
         name,
         email,
         password,

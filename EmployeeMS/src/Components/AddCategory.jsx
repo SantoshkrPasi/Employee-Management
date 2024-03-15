@@ -11,7 +11,7 @@ const AddCategory = () => {
     e.preventDefault();
     try {
       console.log("request called");
-      await axios.post("https://employee-management-server-seven.vercel.app/categories", {
+      await axios.post(`${import.meta.env.VITE_BASE_URL}/categories`, {
         category,
       });
       navigate("/dashboard/category");
@@ -22,8 +22,6 @@ const AddCategory = () => {
 
   return (
     <div className="d-flex justify-content-center mt-5">
-
-
       <div className="p-3 rounded w-25 border">
         <h4>Add Category</h4>
         <form className="d-flex flex-column gap-4 align-items-center">

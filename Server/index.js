@@ -6,18 +6,11 @@ import Category from "./utils/category.js";
 
 const app = express();
 
-// CORS middleware should be placed before route definitions
-app.use(cors({
-  origin: 'https://employee-management-server-seven.vercel.app',
-  credentials: true,
-}));
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })

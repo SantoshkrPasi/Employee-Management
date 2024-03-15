@@ -6,14 +6,14 @@ const Employee = () => {
   var cnt = 1;
   const [Users, setUsers] = useState([])
   useEffect(() => {
-    axios.get('https://employee-management-server-seven.vercel.app/sign')
+    axios.get(`${import.meta.env.VITE_BASE_URL}/sign`)
       .then(Users => setUsers(Users.data))
       .catch(err => console.log(err))
   }, [])
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://employee-management-server-seven.vercel.app/employee/${id}`);
+      await axios.delete(`${import.meta.env.VITE_BASE_URL}/employee/${id}`);
       setUsers(Users.filter((user) => user._id !== id));
     }
     catch (error) {

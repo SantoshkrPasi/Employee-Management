@@ -16,7 +16,7 @@ const Login = () => {
        
         e.preventDefault();
         try{
-            const res = await axios.post("https://employee-management-server-seven.vercel.app/adminlogin",{
+            const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/adminlogin`,{
             email: values.email,
             password: values.password
             })

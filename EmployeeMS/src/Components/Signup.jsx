@@ -30,7 +30,7 @@ function Signup() {
     try {
       console.log("request called");
 
-      const res = await axios.post("https://employee-management-server-seven.vercel.app/adminsignup", {
+      const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/adminsignup`, {
         name,
         email,
         password,

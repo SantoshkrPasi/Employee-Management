@@ -18,39 +18,22 @@ function EditEmployee() {
 
     const submit = async (e) => {
         e.preventDefault();
-<<<<<<< HEAD
 
         try {
           // Send a PUT request to update the employee data
-          await axios.put(`http://localhost:4000/adsign/${user_id}`, {
-=======
-    
-        try {
-          // Send a PUT request to update the employee data
-          await axios.put(`https://employee-management-server-seven.vercel.app/adsign/${user_id}`, {
->>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
+          await axios.put(`${import.meta.env.VITE_BASE_URL}/adsign/${user_id}`, {
             name,
             email,
             password,
             address,
             // Include other fields as needed
           });
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
           // Redirect to the employee details page or any other page after the update
           history('/dashboard/home');
         } catch (error) {
           console.error("Error updating user:", error);
         }
       };
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
     return (
       <div className="d-flex justify-content-center align-items-center addEmployee">
         <div className="p-5 rounded w-40 border d-flex justify-content-center align-items-center">
@@ -59,11 +42,6 @@ function EditEmployee() {
             <div className="mb-6">
               <label htmlFor="text">Name</label>
               <input type="text" name="name" autoComplete="off" placeholder="Enter Name" onChange={(e) => setName(e.target.value)} className="form-control rounded-0" />
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
               <label htmlFor="text">Email</label>
               <input
                 type="email"
@@ -72,11 +50,6 @@ function EditEmployee() {
                 }}
                 placeholder="Enter Email"
                 className="form-control rounded-0" />
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
               <label htmlFor="text">Password</label>
               <input
                 type="password"
@@ -86,11 +59,6 @@ function EditEmployee() {
                 placeholder="Enter Password"
                 className="form-control rounded-0" 
               />
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
               <label htmlFor="text">Address</label>
               <input
                 type="text"
@@ -108,11 +76,6 @@ function EditEmployee() {
             />
           </form>
         </div>
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
       </div>
     );
 }

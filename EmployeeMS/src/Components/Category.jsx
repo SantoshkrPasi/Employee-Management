@@ -8,19 +8,14 @@ const Category = () => {
  
   const [Users , setUsers] = useState([])
   useEffect(() => {
-<<<<<<< HEAD
-   axios.get('http://localhost:4000/fetchcategory')
-=======
-   axios.get('https://employee-management-server-seven.vercel.app/fetchcategory')
->>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
+   axios.get(`${import.meta.env.VITE_BASE_URL}/fetchcategory`)
    .then(Users => setUsers(Users.data))
    .catch(err => console.log(err))
   },[]);
 
-<<<<<<< HEAD
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/fetchcategory/${id}`);
+      await axios.delete(`${import.meta.env.VITE_BASE_URL}/fetchcategory/${id}`);
       setUsers(Users.filter((user) => user._id !== id));
     }
     catch (error) {
@@ -28,8 +23,6 @@ const Category = () => {
     }
   };
 
-=======
->>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
   return (
     <div>
        <div className='d-flex justify-content-center'>
@@ -52,14 +45,10 @@ const Category = () => {
                 return <tr key={user._id} >
                   <td className="mb-3">{cnt++}</td>
                   <td className="mb-3">{user.category}</td>
-<<<<<<< HEAD
                   <td className="mb-3">
                   <button type="button" className="btn btn-danger m-2" onClick={() => handleDelete(user._id)}>Delete</button>
                   </td>
                   </tr>
-=======
-                </tr>
->>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
               })
             }
           </tbody>

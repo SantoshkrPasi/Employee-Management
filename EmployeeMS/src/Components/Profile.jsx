@@ -41,7 +41,7 @@ const Profile = () => {
   const auth = localStorage.getItem("admintoken");
 
   const handle = async () => {
-    const res = await axios.post("https://employee-management-server-seven.vercel.app/profile", {
+    const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/profile`, {
       email: auth,
     });
     setUsers(res.data);
