@@ -13,6 +13,7 @@ import Signup from './Components/Signup';
 import Best from './Components/Best';
 import EmployeeLogin from './Components/Emplyeelogin'
 import EmployeeDashboard from './Components/EmployeeDashboard';
+import EditAdmin from './Components/EditAdmin';
 import EditEmployee from './Components/EditEmployee';
 
 
@@ -28,6 +29,7 @@ function App() {
     <Route path='/adminsignup' element={<Signup />}></Route>
     <Route path='/dashboard' element={<Dashboard />}>
         <Route path='/dashboard/home' element={<Home />}></Route> 
+        <Route path='/dashboard/edit_admin' element={<EditAdmin />}></Route>
         <Route path='/dashboard/edit_employee' element={<EditEmployee />}></Route>
         <Route path='/dashboard/employee' element={<Employee />}></Route>
         <Route path='/dashboard/category' element={<Category />}></Route>

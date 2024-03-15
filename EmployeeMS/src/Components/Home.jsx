@@ -9,14 +9,14 @@ const Home = () => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:4000/adsign').then(Users => setUsers(Users.data)).catch(err => console.log(err))
-    axios.get('http://localhost:4000/sign').then(Empers => setEmpers(Empers.data)).catch(err => console.log(err))
+    axios.get('https://employee-management-server-seven.vercel.app/adsign').then(Users => setUsers(Users.data)).catch(err => console.log(err))
+    axios.get('https://employee-management-server-seven.vercel.app/sign').then(Empers => setEmpers(Empers.data)).catch(err => console.log(err))
   }, [])
 
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/adsign/${id}`);
+      await axios.delete(`https://employee-management-server-seven.vercel.app/adsign/${id}`);
       setUsers(Users.filter((user) => user._id !== id));
     }
     catch (error) {
@@ -69,7 +69,7 @@ const Home = () => {
                   <td className="mb-3">{cnt++}</td>
                   <td className="mb-3">{user.email}</td>
                   <td className="mb-3">
-                    <Link to={`/dashboard/edit_employee?user_id=${user._id}`} type="button" className="btn btn-warning m-2">Edit</Link>
+                    <Link to={`/dashboard/edit_admin?user_id=${user._id}`} type="button" className="btn btn-warning m-2">Edit</Link>
                     <button type="button" className="btn btn-danger m-2" onClick={() => handleDelete(user._id)}>Delete</button>
                   </td>
                 </tr>

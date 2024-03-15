@@ -1,12 +1,24 @@
 import express from "express";
 import cors from "cors";
+<<<<<<< HEAD
 import Collection from "./utils/userModel.js";
 import Model from "./utils/adminModel.js";
 import Category from "./utils/category.js";
+=======
+>>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
 
 const app = express();
+
+// CORS middleware should be placed before route definitions
+app.use(cors({
+  origin: 'https://employee-management-server-seven.vercel.app',
+  credentials: true,
+}));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+<<<<<<< HEAD
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -14,6 +26,15 @@ app.use(
     credentials: true,
   })
 );
+=======
+// app.use(cors());
+// ---------
+
+// Allow requests from 'http://localhost:5173'
+// app.use(
+//   cors()
+// );
+>>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
 
 // ==============================Admin======================
 app.get('/home',async(req,res)=>{
@@ -33,6 +54,7 @@ app.post("/adminlogin", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 app.post("/adminsignup", async (req, res) => {
   try {
     const { name, email, password, address ,image} = req.body;
@@ -147,6 +169,8 @@ app.delete("/fetchcategory/:id", async (req, res) => {
 // =========================Employee===================================
 
 
+=======
+>>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
 app.get("/", (req, res) => {
   res.end("Welcome Database");
 });
@@ -218,7 +242,28 @@ app.get("/sign", async (req, res) => {
     .catch((users) => res.json(error));
 });
 
+<<<<<<< HEAD
 app.put("/sign/:id", async (req, res) => {
+=======
+app.get("/adsign", async (req, res) => {
+  await Model.find()
+    .then(users => res.json(users))
+    .catch(users => res.json(error))
+});
+
+app.delete("/adsign/:id", async (req, res) => {
+  try {
+    const deletedItem = await Model.findByIdAndDelete(req.params.id);
+    res.json(deletedItem);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+// Update Admin_user by ID
+app.put('/adsign/:id', async (req, res) => {
+>>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
   const userId = req.params.id;
   const updatedData = req.body;
 
@@ -233,7 +278,70 @@ app.put("/sign/:id", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+<<<<<<< HEAD
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log("port connected " + port);
 });
+=======
+
+app.get("/adsign/:id", async (req, res) => {
+  const userId = req.params.userId;
+  try {
+    const user = await Model.findById(userId);
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+app.get("/sign", async (req, res) => {
+  await Collection.find()
+    .then(users => res.json(users))
+    .catch(users => res.json(error))
+});
+
+// ---------------------------------Category-------------------------
+app.post("/categories" ,async (req, res) => {
+  try {
+    const {category} = req.body;
+    const data = {
+      category: category,
+    }
+    await Category.create(data);
+    res.status(201).send('Category added successfully');
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+
+});
+app.get("/fetchcategory" ,async (req, res) => {
+  await Category.find()
+    .then(users => res.json(users))
+    .catch(users => res.json(error))
+
+});
+
+// -----------------------------EmployeeEdit-------------------
+// Update Emplyee by ID
+app.put('/sign/:id', async (req, res) => {
+  const userId = req.params.id;
+  const updatedData = req.body;
+
+  try {
+    const updatedUser = await Collection.updateOne({ _id: userId }, { $set: updatedData });
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log("port connected" + port);
+});
+>>>>>>> 05d5ba4c7ddd66d157c60ff38b895ad2b9842a8d
